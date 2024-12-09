@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import { SharedStateProvider, useSharedState } from './context/SharedStateContext'
 
-function App() {
+function AppContent() {
   const [DynamicComponent, setDynamicComponent] = useState(null)
+  const { count, setCount } = useSharedState();
 
   const loadComponent = async () => {
-    // 动态导入组件
     const module = await import('./components/DynamicComponent')
     setDynamicComponent(() => module.default)
   }
@@ -12,7 +13,13 @@ function App() {
   return (
     <div>
       <h1>React Dynamic Import Demo</h1>
-      <button onClick={loadComponent}>
+      <div>
+        <p>Main Component Count: {count}</p>
+        <button onClick={() => setCount(count + 1)}>
+          Increment from Main
+        </button>
+      </div>
+      <button onClick={loadComponent} style={{ marginTop: '10px' }}>
         Load Dynamic Component
       </button>
       {DynamicComponent && (
@@ -21,6 +28,14 @@ function App() {
         </div>
       )}
     </div>
+  )
+}
+
+function App() {
+  return (
+    <SharedStateProvider>
+      <AppContent />
+    </SharedStateProvider>
   )
 }
 

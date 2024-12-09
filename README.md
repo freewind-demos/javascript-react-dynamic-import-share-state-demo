@@ -1,30 +1,28 @@
-# React Dynamic Import Demo
+# React动态导入与状态共享演示
 
-这个项目演示了在React中如何实现动态导入（Dynamic Import）组件的功能。
+这个项目演示了如何在React中实现动态导入（Dynamic Import）组件，并通过React Context在主组件和动态导入的组件之间共享状态。
 
-## 功能描述
+## 功能特点
 
-- 页面上有一个按钮
-- 点击按钮后，会动态加载另一个JS文件中定义的React组件
-- 加载完成后，将该组件渲染到页面上
+1. 使用 `import()` 实现组件的动态加载
+2. 通过React Context实现主组件和动态组件之间的状态共享
+3. 组件之间的状态实时同步更新
+
+## 使用方法
+
+```bash
+pnpm install
+pnpm start
+```
+
+## 工作原理
+
+1. 主组件包含一个用于加载动态组件的按钮
+2. 两个组件都可以访问和修改共享的计数器状态
+3. 任一组件中的状态变化都会立即反映在另一个组件中
 
 ## 技术栈
 
 - React
 - Vite
-- JavaScript
-- pnpm
-
-## 如何运行
-
-1. 安装依赖：
-```bash
-pnpm install
-```
-
-2. 启动开发服务器：
-```bash
-pnpm dev
-```
-
-3. 在浏览器中访问 http://localhost:5173
+- React Context API（状态管理）
